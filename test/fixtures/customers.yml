@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  name: MyString
+  long: 1.5
+  lat: 1.5
+  zone_name: MyString
+  salesman_name: MyString
+  status: 1
+  last_visited_at: 2017-03-13
+  last_invoice_at: 2017-03-13
+  last_trx_amount: 1.5
+  extra1: MyString
+  extra2: MyString
+  extra3: MyString
+
+two:
+  id: MyString
+  name: MyString
+  long: 1.5
+  lat: 1.5
+  zone_name: MyString
+  salesman_name: MyString
+  status: 1
+  last_visited_at: 2017-03-13
+  last_invoice_at: 2017-03-13
+  last_trx_amount: 1.5
+  extra1: MyString
+  extra2: MyString
+  extra3: MyString

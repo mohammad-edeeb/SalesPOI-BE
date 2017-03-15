@@ -1,0 +1,2 @@
+class SalesMan < ApplicationRecord
+end
