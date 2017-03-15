@@ -1,4 +1,4 @@
-class CustomerImport
+class SalesManImport
   # switch to ActiveModel::Model in Rails 4
   include ActiveModel::Model
 
@@ -9,12 +9,12 @@ class CustomerImport
   end
 
   def save
-    if imported_customers.map(&:valid?).all?
-      imported_customers.each(&:save!)
+    if imported_sales_men.map(&:valid?).all?
+      imported_sales_men.each(&:save!)
       true
     else
-      imported_customers.each_with_index do |customer, index|
-        customer.errors.full_messages.each do |message|
+      imported_sales_men.each_with_index do |sales_man, index|
+        sales_man.errors.full_messages.each do |message|
           errors.add :base, "Row #{index+2}: #{message}"
         end
       end
@@ -22,16 +22,17 @@ class CustomerImport
     end
   end
 
-  def imported_customers
-    @imported_customers ||= load_imported_customers
+  def imported_sales_men
+    @imported_sales_men ||= load_imported_sales_men
   end
 
-  def load_imported_customers
+  def load_imported_sales_men
     spreadsheet = open_spreadsheet
     (2..spreadsheet.last_row).map do |i|
-      row_data = Hash[[Customer.permitted_attrs, spreadsheet.row(i)].transpose]
-      customer = Customer.new(row_data)
-      customer
+      row_data = Hash[[SalesMan.permitted_attrs, spreadsheet.row(i)].transpose]
+      sales_man = SalesMan.new
+      sales_man.attributes = row_data
+      sales_man
     end
   end
 

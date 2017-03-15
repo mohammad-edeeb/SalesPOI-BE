@@ -13,7 +13,7 @@
   <% end %>
 </ul>
 
-<%= form_for @customer_import do |f| %>
+<%= form_for @customer_import, :url => do_import_customers_path do |f| %>
   <% if @customer_import.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@customer_import.errors.count, "error") %> prohibited this import from completion:</h2>

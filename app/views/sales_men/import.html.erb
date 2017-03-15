@@ -1,0 +1,32 @@
+<h1>Sales Men Import</h1>
+
+<p>Only Excel files (xls, xlsx) are permitted. The first row should be the column name. The following columns are allowed.</p>
+
+<ul>
+  <% SalesMan.columns.each do |column| %>
+    <% if column.name.to_sym.in? SalesMan.permitted_attrs %>
+      <li>
+        <strong><%= column.name %></strong> -
+        <%= column.type.to_s.titleize %> type
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_for @sales_man_import, :url => do_import_sales_men_path do |f| %>
+  <% if @sales_man_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sales_man_import.errors.count, "error") %> prohibited this import from completion:</h2>
+      <ul>
+      <% @sales_man_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

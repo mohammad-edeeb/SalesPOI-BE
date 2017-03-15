@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   root 'customers#index'
- 
-  resources :customer_imports
-  resources :settings
-  resources :sales_men
 
-  resources :customers do
-  	collection {post :import}
+  resources :settings
+
+  resources :sales_men do
+ 	collection {get :import}
+  	collection {post :do_import}
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/customers/near_customers', to: 'customers#near_customers'
+
+  resources :customers do
+  	collection {get :import}
+  	collection {post :do_import}
+  end
+
 end

@@ -61,6 +61,19 @@ class SalesMenController < ApplicationController
     end
   end
 
+  def import
+    @sales_man_import = SalesManImport.new
+  end
+
+  def do_import
+    @sales_man_import = SalesManImport.new(params[:sales_man_import])
+    if @sales_man_import.save
+      redirect_to root_url, notice: "Imported sales men successfully."
+    else
+      render :import
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sales_man
@@ -69,6 +82,6 @@ class SalesMenController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sales_man_params
-      params.require(:sales_man).permit(:username, :password)
+      params.require(:sales_man).permit(SalesMan.permitted_attrs)
     end
 end

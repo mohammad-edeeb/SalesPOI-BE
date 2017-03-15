@@ -61,6 +61,28 @@ class CustomersController < ApplicationController
     end
   end
 
+  def import
+    @customer_import = CustomerImport.new
+  end
+
+  def do_import
+    @customer_import = CustomerImport.new(params[:customer_import])
+    if @customer_import.save
+      redirect_to root_url, notice: "Imported customers successfully."
+    else
+      render :import
+    end
+  end
+
+  def near_customers
+    user_long = params[:long]
+    user_lat = params[:lat]
+    @near_customers = Customer.find_near_customers(user_long, user_lat)
+    respond_to do |format|
+      format.json { render json: @near_customers }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
