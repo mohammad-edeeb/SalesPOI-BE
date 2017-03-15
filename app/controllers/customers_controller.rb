@@ -78,6 +78,7 @@ class CustomersController < ApplicationController
     user_long = params[:long]
     user_lat = params[:lat]
     @near_customers = Customer.find_near_customers(user_long, user_lat)
+    puts params.inspect
     respond_to do |format|
       format.json { render json: @near_customers }
     end

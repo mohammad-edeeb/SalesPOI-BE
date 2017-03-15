@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Roo provides an interface to spreadsheets of several sorts
 gem "roo", "~> 2.7.0"
 
+# Authentication
+gem 'devise'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

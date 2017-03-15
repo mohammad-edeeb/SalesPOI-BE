@@ -1,4 +1,5 @@
 class SalesMenController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_sales_man, only: [:show, :edit, :update, :destroy]
 
   # GET /sales_men
