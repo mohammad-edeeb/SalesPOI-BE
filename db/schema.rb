@@ -12,32 +12,35 @@
 
 ActiveRecord::Schema.define(version: 20170313161404) do
 
-  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
     t.string   "customer_id"
     t.string   "name"
-    t.float    "long",            limit: 24
-    t.float    "lat",             limit: 24
+    t.float    "long"
+    t.float    "lat"
     t.string   "zone_name"
     t.string   "salesman_name"
     t.integer  "status"
     t.date     "last_visited_at"
     t.date     "last_invoice_at"
-    t.float    "last_trx_amount", limit: 24
+    t.float    "last_trx_amount"
     t.string   "extra1"
     t.string   "extra2"
     t.string   "extra3"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "sales_men", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sales_men", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "settings", force: :cascade do |t|
     t.string   "name"
     t.string   "value"
     t.datetime "created_at", null: false
