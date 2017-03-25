@@ -20,8 +20,8 @@ class Customer < ApplicationRecord
 			min_distance = distance_setting.present? ? distance_setting.value.to_f : DEFAULT_DISTANCE
 			near_customers = []
 			Customer.all.each do |c|
-				distance = Geocoder::Calculations::distance_between([c.lat, lat], [c.long, long])
-				if(distance < min_distance)
+				distance = Geocoder::Calculations::distance_between([c.lat, c.long], [lat, long], units: :km)
+				if((distance * 1000) < min_distance)
 					c.distance = distance
 					near_customers.push(c)
 				end
