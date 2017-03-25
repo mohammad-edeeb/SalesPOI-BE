@@ -38,6 +38,9 @@ gem "roo", "~> 2.7.0"
 # Authentication
 gem 'devise'
 
+
+gem 'will_paginate', '~> 3.1.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

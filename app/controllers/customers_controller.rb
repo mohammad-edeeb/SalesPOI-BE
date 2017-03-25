@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.paginate(:page => params[:page], :per_page => 20).order("customer_id ASC")
   end
 
   # GET /customers/1
@@ -67,9 +67,14 @@ class CustomersController < ApplicationController
   end
 
   def do_import
+    if(!params[:customer_import].present?)
+      @customer_import = CustomerImport.new
+      render :import
+      return
+    end
     @customer_import = CustomerImport.new(params[:customer_import])
     if @customer_import.save
-      redirect_to root_url, notice: "Imported customers successfully."
+      redirect_to customers_url, notice: "Imported customers successfully."
     else
       render :import
     end

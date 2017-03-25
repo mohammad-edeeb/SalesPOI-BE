@@ -63,9 +63,14 @@ class SalesMenController < ApplicationController
   end
 
   def do_import
+    if(!params[:sales_man_import].present?)
+      @sales_man_import = SalesManImport.new
+      render :import
+      return
+    end
     @sales_man_import = SalesManImport.new(params[:sales_man_import])
     if @sales_man_import.save
-      redirect_to root_url, notice: "Imported sales men successfully."
+      redirect_to sales_men_url, notice: "Imported sales men successfully."
     else
       render :import
     end
