@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SalesPoi</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>SalesPoi</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
 
-    <div id="user_nav">
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to "sign in", new_user_session_path %>
-      <% end %>
+  <div id="user_nav">
+    <% if user_signed_in? %>
+    Signed in as <%= current_user.username %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+    <%= link_to "sign in", new_user_session_path %>
+    <% end %>
+  </div>
+
+  <div id="columns">
+    <% if user_signed_in? %>
+      <div id="side">
+        <%= link_to "Customers", customers_path %> <br/>
+        <%= link_to "Import Customers", import_customers_path %> <br/>
+        <%= link_to "Salesmen", sales_men_path %> <br/>
+        <%= link_to "Import Salemen", import_sales_men_path %> <br/>
+        <%= link_to "Settings", settings_path %>
+      </div>
+    <% end %>
+    <div id="main">
+      <%= yield %>
     </div>
+  </div>
 
-    <%= yield %>
-  </body>
+</body>
 </html>

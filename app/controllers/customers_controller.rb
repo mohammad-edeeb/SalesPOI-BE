@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
@@ -71,16 +72,6 @@ class CustomersController < ApplicationController
       redirect_to root_url, notice: "Imported customers successfully."
     else
       render :import
-    end
-  end
-
-  def near_customers
-    user_long = params[:long]
-    user_lat = params[:lat]
-    @near_customers = Customer.find_near_customers(user_long, user_lat)
-    puts params.inspect
-    respond_to do |format|
-      format.json { render json: @near_customers }
     end
   end
 

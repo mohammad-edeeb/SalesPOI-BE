@@ -1,16 +1,9 @@
 <h1>Sales Men Import</h1>
 
-<p>Only Excel files (xls, xlsx) are permitted. The first row should be the column name. The following columns are allowed.</p>
-
 <ul>
-  <% SalesMan.columns.each do |column| %>
-    <% if column.name.to_sym.in? SalesMan.permitted_attrs %>
-      <li>
-        <strong><%= column.name %></strong> -
-        <%= column.type.to_s.titleize %> type
-      </li>
-    <% end %>
-  <% end %>
+  <li>Only Excel files (xls, xlsx) are permitted.</li>
+  <li>The first row should be for column names.</li>
+  <li>Username and password are mandatory</li>
 </ul>
 
 <%= form_for @sales_man_import, :url => do_import_sales_men_path do |f| %>

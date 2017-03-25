@@ -9,11 +9,11 @@
       <th>Name</th>
       <th>Long</th>
       <th>Lat</th>
-      <th>Zone name</th>
-      <th>Salesman name</th>
+      <th>Zone</th>
+      <th>Salesman</th>
       <th>Status</th>
-      <th>Last visited at</th>
-      <th>Last invoice at</th>
+      <th>Last visited</th>
+      <th>Last invoice</th>
       <th>Last trx amount</th>
       <th>Extra1</th>
       <th>Extra2</th>
@@ -25,7 +25,7 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.id %></td>
+        <td><%= customer.customer_id %></td>
         <td><%= customer.name %></td>
         <td><%= customer.long %></td>
         <td><%= customer.lat %></td>

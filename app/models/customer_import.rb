@@ -1,5 +1,4 @@
 class CustomerImport
-  # switch to ActiveModel::Model in Rails 4
   include ActiveModel::Model
 
   attr_accessor :file
@@ -10,6 +9,7 @@ class CustomerImport
 
   def save
     if imported_customers.map(&:valid?).all?
+      Customer.delete_all
       imported_customers.each(&:save!)
       true
     else

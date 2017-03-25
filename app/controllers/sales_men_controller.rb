@@ -8,11 +8,6 @@ class SalesMenController < ApplicationController
     @sales_men = SalesMan.all
   end
 
-  # GET /sales_men/1
-  # GET /sales_men/1.json
-  def show
-  end
-
   # GET /sales_men/new
   def new
     @sales_man = SalesMan.new
@@ -29,7 +24,7 @@ class SalesMenController < ApplicationController
 
     respond_to do |format|
       if @sales_man.save
-        format.html { redirect_to @sales_man, notice: 'Sales man was successfully created.' }
+        format.html { redirect_to @ales_men_url, notice: 'Sales man was successfully created.' }
         format.json { render :show, status: :created, location: @sales_man }
       else
         format.html { render :new }
@@ -43,7 +38,8 @@ class SalesMenController < ApplicationController
   def update
     respond_to do |format|
       if @sales_man.update(sales_man_params)
-        format.html { redirect_to @sales_man, notice: 'Sales man was successfully updated.' }
+        @sales_man.regenrate_auth_token
+        format.html { redirect_to sales_men_url, notice: 'Sales man was successfully updated.' }
         format.json { render :show, status: :ok, location: @sales_man }
       else
         format.html { render :edit }

@@ -10,6 +10,7 @@ class SalesManImport
 
   def save
     if imported_sales_men.map(&:valid?).all?
+      SalesMan.delete_all
       imported_sales_men.each(&:save!)
       true
     else
@@ -29,9 +30,8 @@ class SalesManImport
   def load_imported_sales_men
     spreadsheet = open_spreadsheet
     (2..spreadsheet.last_row).map do |i|
-      row_data = Hash[[SalesMan.permitted_attrs, spreadsheet.row(i)].transpose]
-      sales_man = SalesMan.new
-      sales_man.attributes = row_data
+      row_data = spreadsheet.row(i)
+      sales_man = SalesMan.new(:username => row_data[0], :password => row_data[1])
       sales_man
     end
   end
