@@ -38,7 +38,7 @@ class SalesMenController < ApplicationController
   def update
     respond_to do |format|
       if @sales_man.update(sales_man_params)
-        @sales_man.regenrate_auth_token
+        @sales_man.regenerate_auth_token
         format.html { redirect_to sales_men_url, notice: 'Sales man was successfully updated.' }
         format.json { render :show, status: :ok, location: @sales_man }
       else
