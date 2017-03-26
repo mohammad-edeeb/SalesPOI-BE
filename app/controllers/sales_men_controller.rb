@@ -24,7 +24,7 @@ class SalesMenController < ApplicationController
 
     respond_to do |format|
       if @sales_man.save
-        format.html { redirect_to @ales_men_url, notice: 'Sales man was successfully created.' }
+        format.html { redirect_to sales_men_url, notice: 'Sales man was successfully created.' }
         format.json { render :show, status: :created, location: @sales_man }
       else
         format.html { render :new }
