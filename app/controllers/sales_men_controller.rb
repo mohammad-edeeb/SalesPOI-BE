@@ -5,7 +5,7 @@ class SalesMenController < ApplicationController
   # GET /sales_men
   # GET /sales_men.json
   def index
-    @sales_men = SalesMan.all
+    @sales_men = SalesMan.paginate(:page => params[:page], :per_page => 20).order("username ASC")
   end
 
   # GET /sales_men/new
